@@ -1,39 +1,40 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { addTask } from "../store/taskSlice";
+import { addTask } from "./../../store/taskSlice.js";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { PlusCircle } from "lucide-react";
 
 const TaskForm = () => {
-    const dispatch = useDispatch();
-    const user = useSelector((state) => state.auth.user);
     const [title, setTitle] = useState("");
     const [category, setCategory] = useState("personal");
     const [priority, setPriority] = useState("medium");
     const [dueDate, setDueDate] = useState(null);
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     if (!title.trim() || !user) return;
+    const dispatch = useDispatch();
+    const user = useSelector((state) => state.authSlice.user);
 
-    //     const newTask = {
-    //         id: crypto.randomUUID(),
-    //         title: title.trim(),
-    //         completed: false,
-    //         category,
-    //         priority,
-    //         dueDate: dueDate ? dueDate.toISOString() : null,
-    //         createdAt: new Date().toISOString(),
-    //         userId: user.id,
-    //     };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!title.trim() || !user) return;
 
-    //     dispatch(addTask(newTask));
-    //     setTitle("");
-    //     setCategory("personal");
-    //     setPriority("medium");
-    //     setDueDate(null);
-    // };
+        const newTask = {
+            id: crypto.randomUUID(),
+            title: title.trim(),
+            completed: false,
+            category,
+            priority,
+            dueDate: dueDate ? dueDate.toISOString() : null,
+            createdAt: new Date().toISOString(),
+            userId: user.id,
+        };
+
+        dispatch(addTask(newTask));
+        setTitle("");
+        setCategory("personal");
+        setPriority("medium");
+        setDueDate(null);
+    };
 
     return (
         <form

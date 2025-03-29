@@ -8,7 +8,7 @@ const PublicRoute = ({ children }) => {
     );
 
     if (isAuthenticated) {
-        return <Navigate to='/todos' replace />;
+        return <Navigate to='/tasks' replace />;
     }
 
     return <>{children}</>;

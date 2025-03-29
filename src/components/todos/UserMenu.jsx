@@ -1,15 +1,15 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { logout } from "../store/authSlice";
+import { logout } from "./../../store/authSlice.js";
 import { LogOut, User } from "lucide-react";
 
 const UserMenu = () => {
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.auth.user);
+    const user = useSelector((state) => state.authSlice.user);
 
-    // const handleLogout = () => {
-    //     dispatch(logout());
-    // };
+    const handleLogout = () => {
+        dispatch(logout());
+    };
 
     return (
         <div className='absolute top-4 right-4 flex items-center space-x-4'>

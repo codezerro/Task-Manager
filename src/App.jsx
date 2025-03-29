@@ -9,13 +9,13 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import PrivateRoute from "./components/auth/PrivateRoute.jsx";
 import PublicRoute from "./components/auth/PublicRoute.jsx";
-import Todos from "./pages/Todos.jsx";
+import Task from "./pages/Task.jsx";
 
 const App = () => {
     return (
         <Router>
             <Routes>
-                <Route path='/' element={<Navigate to='/todos' replace />} />
+                <Route path='/' element={<Navigate to='/tasks' replace />} />
                 <Route
                     path='/login'
                     element={
@@ -33,10 +33,10 @@ const App = () => {
                     }
                 />
                 <Route
-                    path='/todos'
+                    path='/tasks'
                     element={
                         <PrivateRoute>
-                            <Todos />
+                            <Task />
                         </PrivateRoute>
                     }
                 />

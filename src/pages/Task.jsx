@@ -1,13 +1,14 @@
 import React from "react";
 import { CheckSquare } from "lucide-react";
-// import TaskForm from "../components/todos/TaskForm";
-// import TaskFilters from "../components/todos/TaskFilters";
-// import TaskList from "../components/todos/TaskList";
+import TaskForm from "../components/todos/TaskForm.jsx";
+import TaskFilters from "../components/todos/TaskFilters.jsx";
+import UserMenu from "../components/todos/UserMenu.jsx";
+import TaskList from "../components/todos/TaskList.jsx";
 
-const Todos = () => {
+const Task = () => {
     return (
         <div className='min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8'>
-            {/* <UserMenu /> */}
+            <UserMenu />
             <div className='max-w-3xl mx-auto space-y-6'>
                 <div className='text-center'>
                     <div className='flex items-center justify-center space-x-2'>
@@ -21,12 +22,12 @@ const Todos = () => {
                     </p>
                 </div>
 
-                {/* <TaskForm />
+                <TaskForm />
                 <TaskFilters />
-                <TaskList /> */}
+                <TaskList />
             </div>
         </div>
     );
 };
 
-export default Todos;
+export default Task;

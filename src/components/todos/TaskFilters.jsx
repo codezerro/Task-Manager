@@ -1,11 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { setFilter } from "../store/taskSlice";
+import { setFilter } from "./../../store/taskSlice.js";
 import { Search, Filter } from "lucide-react";
 
 const TaskFilters = () => {
     const dispatch = useDispatch();
-    const filter = useSelector((state) => state.tasks.filter);
+    const filter = useSelector((state) => state.taskSlice.filter);
 
     return (
         <div className='bg-white p-6 rounded-lg shadow-md space-y-4'>
@@ -17,10 +17,10 @@ const TaskFilters = () => {
                 <input
                     type='text'
                     placeholder='Search tasks...'
-                    // value={filter.search}
-                    // onChange={(e) =>
-                    //     dispatch(setFilter({ search: e.target.value }))
-                    // }
+                    value={filter.search}
+                    onChange={(e) =>
+                        dispatch(setFilter({ search: e.target.value }))
+                    }
                     className='w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
                 />
             </div>

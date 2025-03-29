@@ -8,7 +8,11 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { format } from "date-fns";
-// import { toggleTask, removeTask, reorderTasks } from "../store/taskSlice";
+import {
+    toggleTask,
+    removeTask,
+    reorderTasks,
+} from "./../../store/taskSlice.js";
 import { Check, Trash2, Calendar, AlertCircle } from "lucide-react";
 
 const SortableTask = ({ task }) => {
@@ -27,15 +31,15 @@ const SortableTask = ({ task }) => {
         high: "bg-red-100 text-red-800",
     };
 
-    // const handleDelete = (e) => {
-    //     e.stopPropagation();
-    //     dispatch(removeTask(task.id));
-    // };
+    const handleDelete = (e) => {
+        e.stopPropagation();
+        dispatch(removeTask(task.id));
+    };
 
-    // const handleToggle = (e) => {
-    //     e.stopPropagation();
-    //     dispatch(toggleTask(task.id));
-    // };
+    const handleToggle = (e) => {
+        e.stopPropagation();
+        dispatch(toggleTask(task.id));
+    };
 
     return (
         <div
@@ -107,7 +111,7 @@ const SortableTask = ({ task }) => {
 
 const TaskList = () => {
     const dispatch = useDispatch();
-    const { tasks, filter } = useSelector((state) => state.tasks);
+    const { tasks, filter } = useSelector((state) => state.taskSlice);
 
     const filteredTasks = tasks.filter((task) => {
         const matchesStatus =

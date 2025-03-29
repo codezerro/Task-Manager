@@ -54,7 +54,8 @@ const Register = () => {
 
         // register new user
         const newUser = {
-            name: name,
+            id: crypto.randomUUID(),
+            name: name.trim(),
             email: email,
             password: password1,
         };
