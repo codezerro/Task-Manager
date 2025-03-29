@@ -14,10 +14,7 @@ const App = () => {
     return (
         <Router>
             <Routes>
-                <Route
-                    path='/'
-                    element={<Navigate to='/dashboard' replace />}
-                />
+                <Route path='/' element={<Navigate to='/todos' replace />} />
                 <Route
                     path='/login'
                     element={
