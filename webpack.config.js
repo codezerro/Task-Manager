@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 export default {
     entry: "./src/index.js",
     output: {
-        path: path.resolve(__dirname, "dist"),
+        path: path.resolve(__dirname, "public"),
         filename: "bundle.js",
         clean: true,
     },
@@ -37,7 +37,7 @@ export default {
     ],
     devServer: {
         static: {
-            directory: path.join(__dirname, "dist"),
+            directory: path.join(__dirname, "public"),
         },
         compress: true,
         port: 3000,
