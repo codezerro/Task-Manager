@@ -9,6 +9,7 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import PrivateRoute from "./components/auth/PrivateRoute.jsx";
 import PublicRoute from "./components/auth/PublicRoute.jsx";
+import Todos from "./pages/Todos.jsx";
 
 const App = () => {
     return (
@@ -35,8 +36,7 @@ const App = () => {
                     path='/todos'
                     element={
                         <PrivateRoute>
-                            {/* // <Dashboard /> */}
-                            <h2>Dashboard</h2>
+                            <Todos />
                         </PrivateRoute>
                     }
                 />
