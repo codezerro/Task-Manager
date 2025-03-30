@@ -32,6 +32,8 @@ const SortableTask = ({ task }) => {
     };
 
     const handleDelete = (e) => {
+        console.log("Delete task:", e.target, " ", task.id);
+
         e.stopPropagation();
         dispatch(removeTask(task.id));
     };
@@ -100,7 +102,7 @@ const SortableTask = ({ task }) => {
             </div>
 
             <button
-                onClick={handleDelete}
+                onMouseDown={handleDelete}
                 className='text-red-500 hover:text-red-700 p-2 hover:bg-red-50 rounded-full transition-colors'
             >
                 <Trash2 size={20} />
