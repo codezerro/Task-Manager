@@ -8,8 +8,8 @@ import { PlusCircle } from "lucide-react";
 const TaskForm = () => {
     const [title, setTitle] = useState("");
     const [category, setCategory] = useState("personal");
-    const [priority, setPriority] = useState("medium");
-    const [dueDate, setDueDate] = useState(null);
+    const [priority, setPriority] = useState("low");
+    const [dueDate, setDueDate] = useState(new Date());
 
     const dispatch = useDispatch();
     const user = useSelector((state) => state.authSlice.user);
@@ -24,7 +24,7 @@ const TaskForm = () => {
             completed: false,
             category,
             priority,
-            dueDate: dueDate ? dueDate.toISOString() : null,
+            dueDate: dueDate ? dueDate.toISOString() : new Date().toISOString(),
             createdAt: new Date().toISOString(),
             userId: user.email,
         };

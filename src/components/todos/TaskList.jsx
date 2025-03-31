@@ -15,7 +15,7 @@ import {
 } from "./../../store/taskSlice.js";
 import { Check, Trash2, Calendar, AlertCircle } from "lucide-react";
 
-const SortableTask = ({ task }) => {
+const SortableTask = ({ task, idx }) => {
     const dispatch = useDispatch();
     const { attributes, listeners, setNodeRef, transform, transition } =
         useSortable({ id: task.id });
@@ -32,8 +32,6 @@ const SortableTask = ({ task }) => {
     };
 
     const handleDelete = (e) => {
-        console.log("Delete task:", e.target, " ", task.id);
-
         e.stopPropagation();
         dispatch(removeTask(task.id));
     };
@@ -49,17 +47,17 @@ const SortableTask = ({ task }) => {
             style={style}
             {...attributes}
             {...listeners}
-            className={`flex items-center justify-between p-4 bg-white rounded-lg shadow-sm mb-2 cursor-move ${
+            className={`flex items-center justify-between p-4  rounded-lg shadow-sm mb-2 cursor-move ${
                 task.completed ? "opacity-75" : ""
-            }`}
+            } ${(idx & 1) === 0 ? "bg-gray-200" : "bg-gray-300"}`}
         >
             <div className='flex items-center space-x-4'>
                 <button
                     onMouseDown={handleToggle}
                     className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
                         task.completed
-                            ? "bg-green-500 border-green-500"
-                            : "border-gray-300 hover:border-green-500"
+                            ? "bg-green-500 border-green-400"
+                            : "border-gray-500 hover:border-green-500"
                     }`}
                 >
                     {task.completed && (
@@ -102,6 +100,7 @@ const SortableTask = ({ task }) => {
             </div>
 
             <button
+                title='Delete Task'
                 onMouseDown={handleDelete}
                 className='text-red-500 hover:text-red-700 p-2 hover:bg-red-50 rounded-full transition-colors'
             >
@@ -165,8 +164,8 @@ const TaskList = () => {
                 strategy={verticalListSortingStrategy}
             >
                 <div className='space-y-2'>
-                    {filteredTasks.map((task) => (
-                        <SortableTask key={task.id} task={task} />
+                    {filteredTasks.map((task, idx) => (
+                        <SortableTask key={task.id} idx={idx} task={task} />
                     ))}
                 </div>
             </SortableContext>
