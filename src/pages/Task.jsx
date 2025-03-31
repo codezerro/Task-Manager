@@ -18,7 +18,7 @@ const Task = () => {
                         </h1>
                     </div>
                     <p className='mt-2 text-gray-600'>
-                        Organize your tasks efficiently
+                        Organize your tasks efficiently.
                     </p>
                 </div>
 

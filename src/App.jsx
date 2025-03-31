@@ -16,10 +16,8 @@ import { useDispatch, useSelector } from "react-redux";
 const App = () => {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.authSlice.user);
-    // Initialize tasks when the app loads
-    React.useEffect(() => {
-        console.log("Initializing tasks...");
 
+    React.useEffect(() => {
         if (!user) return;
         dispatch(initializeTasks(user.email));
     }, [dispatch]);

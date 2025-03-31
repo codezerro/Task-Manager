@@ -7,5 +7,4 @@ const store = configureStore({
     devTools: true,
 });
 
-// preloadedState: loadState(),
 export default store;

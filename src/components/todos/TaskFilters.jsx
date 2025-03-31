@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilter } from "./../../store/taskSlice.js";
-import { Search, Filter } from "lucide-react";
+import { Search, Filter, ListFilter, LayoutList } from "lucide-react";
 
 const TaskFilters = () => {
     const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const TaskFilters = () => {
 
             <div className='flex flex-col sm:flex-row gap-4'>
                 <div className='flex items-center space-x-2 flex-1'>
-                    <Filter size={20} className='text-gray-400' />
+                    <Filter size={20} className='text-gray-500' />
                     <select
                         value={filter.status}
                         onChange={(e) =>
@@ -42,7 +42,7 @@ const TaskFilters = () => {
                 </div>
 
                 <div className='flex items-center space-x-2 flex-1'>
-                    <Filter size={20} className='text-gray-400' />
+                    <LayoutList size={20} className='text-gray-500' />
                     <select
                         value={filter.category}
                         onChange={(e) =>
@@ -56,6 +56,30 @@ const TaskFilters = () => {
                         <option value='groceries'>Groceries</option>
                         <option value='other'>Other</option>
                     </select>
+                </div>
+                <div className='flex items-center space-x-2 flex-1'>
+                    <ListFilter
+                        size={20}
+                        className={`text-gray-500 ${
+                            filter.sortOrder === 0 ? "rotate-180" : ""
+                        }`}
+                    />
+                    <div
+                        onClick={(e) =>
+                            dispatch(
+                                setFilter({
+                                    sortOrder: filter.sortOrder === 0 ? 1 : 0,
+                                })
+                            )
+                        }
+                        className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer select-none'
+                    >
+                        {filter.sortOrder === 0 ? (
+                            <span className=''>Ascending</span>
+                        ) : (
+                            <span className=''>Descending</span>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

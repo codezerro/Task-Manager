@@ -15,6 +15,7 @@ const initialState = {
         status: "all",
         category: "all",
         search: "",
+        sortOrder: 0,
     },
 };
 
@@ -62,6 +63,17 @@ const taskSlice = createSlice({
             }
         },
         updateTaskCategory: (state, action) => {
+            const task = state.tasks.find(
+                (task) => task.id === action.payload.id
+            );
+            if (task) {
+                task.category = action.payload.category;
+                if (task.userId) {
+                    saveTasksToStorage(state.tasks, task.userId);
+                }
+            }
+        },
+        updateTaskOrder: (state, action) => {
             const task = state.tasks.find(
                 (task) => task.id === action.payload.id
             );

@@ -110,25 +110,35 @@ const SortableTask = ({ task, idx }) => {
     );
 };
 
+const priorityOrder = { low: 1, medium: 2, high: 3 };
+
 const TaskList = () => {
     const dispatch = useDispatch();
     const { tasks, filter } = useSelector((state) => state.taskSlice);
 
-    const filteredTasks = tasks.filter((task) => {
-        const matchesStatus =
-            filter.status === "all" ||
-            (filter.status === "completed" && task.completed) ||
-            (filter.status === "incomplete" && !task.completed);
+    const filteredTasks = tasks
+        .filter((task) => {
+            const matchesStatus =
+                filter.status === "all" ||
+                (filter.status === "completed" && task.completed) ||
+                (filter.status === "incomplete" && !task.completed);
 
-        const matchesCategory =
-            filter.category === "all" || task.category === filter.category;
+            const matchesCategory =
+                filter.category === "all" || task.category === filter.category;
 
-        const matchesSearch = task.title
-            .toLowerCase()
-            .includes(filter.search.toLowerCase());
+            const matchesSearch = task.title
+                .toLowerCase()
+                .includes(filter.search.toLowerCase());
 
-        return matchesStatus && matchesCategory && matchesSearch;
-    });
+            return matchesStatus && matchesCategory && matchesSearch;
+        })
+        .sort((a, b) => {
+            if (filter.sortOrder === 0) {
+                return priorityOrder[a.priority] - priorityOrder[b.priority]; // Low → High
+            } else {
+                return priorityOrder[b.priority] - priorityOrder[a.priority]; // High → Low
+            }
+        });
 
     const handleDragEnd = (event) => {
         const { active, over } = event;
