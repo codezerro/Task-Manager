@@ -26,14 +26,14 @@ const taskSlice = createSlice({
             state.tasks = loadTasksFromStorage(action.payload);
         },
         addTask: (state, action) => {
+            console.log(action.payload);
+
             state.tasks.push(action.payload);
             if (action.payload.userId) {
                 saveTasksToStorage(state.tasks, action.payload.userId);
             }
         },
         removeTask: (state, action) => {
-            console.log(action.payload);
-
             state.tasks = state.tasks.filter(
                 (task) => task.id !== action.payload
             );

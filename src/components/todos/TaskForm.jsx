@@ -26,7 +26,7 @@ const TaskForm = () => {
             priority,
             dueDate: dueDate ? dueDate.toISOString() : null,
             createdAt: new Date().toISOString(),
-            userId: user.id,
+            userId: user.email,
         };
 
         dispatch(addTask(newTask));

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { UserPlus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { addUser } from "../store/usersSlice.js";
-// import { login } from "../store/authSlice";
+import { login } from "../store/authSlice.js";
 // import { User } from "../types/auth";
 
 const Register = () => {
@@ -14,6 +15,7 @@ const Register = () => {
     const [error, setError] = useState("");
 
     // redux
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const users = useSelector((state) => state.usersSlice.users);
@@ -61,10 +63,10 @@ const Register = () => {
         };
         dispatch(addUser(newUser));
         // Simulate authentication
-        // dispatch(login(newUser));
+        dispatch(login(newUser));
         // Redirect to dashboard
         // Navigate("/dashboard");
-        // Or use history.push("/dashboard") if using react-router v5
+        navigate("/tasks");
         // Simulate successful registration
 
         // Reset state

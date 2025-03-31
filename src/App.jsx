@@ -10,8 +10,19 @@ import Register from "./pages/Register.jsx";
 import PrivateRoute from "./components/auth/PrivateRoute.jsx";
 import PublicRoute from "./components/auth/PublicRoute.jsx";
 import Task from "./pages/Task.jsx";
+import { initializeTasks } from "./store/taskSlice.js";
+import { useDispatch, useSelector } from "react-redux";
 
 const App = () => {
+    const dispatch = useDispatch();
+    const user = useSelector((state) => state.authSlice.user);
+    // Initialize tasks when the app loads
+    React.useEffect(() => {
+        console.log("Initializing tasks...");
+
+        if (!user) return;
+        dispatch(initializeTasks(user.email));
+    }, [dispatch]);
     return (
         <Router>
             <Routes>

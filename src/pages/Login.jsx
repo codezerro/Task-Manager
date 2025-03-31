@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { login } from "../store/authSlice.js";
 import { LogIn } from "lucide-react";
+import { initializeTasks } from "../store/taskSlice.js";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -48,7 +49,7 @@ const Login = () => {
         }
 
         dispatch(login({ email, password }));
-        // Simulate authentication
+        dispatch(initializeTasks(email));
     };
 
     return (

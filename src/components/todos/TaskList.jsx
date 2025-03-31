@@ -55,7 +55,7 @@ const SortableTask = ({ task }) => {
         >
             <div className='flex items-center space-x-4'>
                 <button
-                    onClick={handleToggle}
+                    onMouseDown={handleToggle}
                     className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
                         task.completed
                             ? "bg-green-500 border-green-500"
